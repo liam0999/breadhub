@@ -6,4 +6,10 @@ return {
         info = "Information tab, testing info.";
     };
     
+    ["Counter Blox"] = {
+        id = 301549746;
+        desc = "Counter blox test lol, no feastures.";
+        info = "info tab testing aaaaaaaaaaaaaaaaa";
+    };
+    
 }
