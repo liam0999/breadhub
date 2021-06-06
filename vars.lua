@@ -1,14 +1,8 @@
-local genv = getgenv()
-local vars = {
-    ReplicatedStorage = game:GetService("ReplicatedStorage");
-    TweenService = game:GetService("TweenService");
-    TextService = game:GetService("TextService");
-    UserInputService = game:GetService("UserInputService");
-    HttpService = game:GetService("HttpService");
-    Players = game:GetService("Players");
-    LocalPlayer = game:GetService("Players").LocalPlayer;
-};
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local TweenService = game:GetService("TweenService")
+local TextService = game:GetService("TextService")
+local UserInputService = game:GetService("UserInputService")
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
 
-for i,v in next, vars do
-    genv[i] = v
-end
+local LocalPlayer = Players.LocalPlayer
