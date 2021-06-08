@@ -1,5 +1,5 @@
+local genv = getgenv()
 local breadhub = {}
-
 
 --------------------------------------------------------------------------------------------------------------------------- << getTimeString
 
@@ -23,7 +23,7 @@ breadhub.console = {
 for _,v in next, breadhub.console do
     setmetatable(v,{
         __call = function(t,...)
-            if getgenv().console == true then
+            if genv.console == true then
                 local args = {...}
                 local data = {}
 
@@ -46,8 +46,51 @@ function breadhub.logpcall(func,...)
         local split = e:split(":")
         local path,line,msg = split[1],split[2],split[3]
         if path == scriptName then path = "BreadHub" end
-        breadhub.console.err(table.concat({"From: "..path,"Line: "..line,"Message: "..msg}," || "))
-        breadhub.console.error()
+        breadhub.console.error(table.concat({"From: "..path,"Line: "..line,"Message: "..msg}," || "))
     end
     return s,e
 end
+
+--------------------------------------------------------------------------------------------------------------------------- << team checks
+
+local lplr = game:GetService("Players").LocalPlayer
+
+function breadhub.isFriendly(plr,teamcolor)
+    if teamcolor then
+        if lplr.TeamColor == plr.TeamColor then
+            return true
+        else
+            return false
+        end
+    else
+        if lplr.Team == plr.Team then
+            return true
+        else
+            return false
+        end
+    end
+end
+
+--------------------------------------------------------------------------------------------------------------------------- << call
+
+setmetatable(breadhub,{__index = function(t,i)
+    
+end})
+
+local gamemt = getrawmetatable(game)
+local old = gamemt.__namecall
+
+setreadonly(gamemt,false)
+
+gamemt.__namecall = newcclosure(function(Self,...)
+    local a = {...}
+    local method = getnamecallmethod()
+
+    if not checkcaller() and Self == game and method == "GetSerivce" and a[1] == "breadhub" then
+        return breadhub
+    end
+
+    return old(Self,...)
+end)
+
+setreadonly(gamemt,true)

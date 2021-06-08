@@ -16,10 +16,11 @@ local vars = {
     Camera = workspace.CurrentCamera;
     ogScreenSize = workspace.CurrentCamera.ViewportSize;
     scriptName = scriptName;
-    genv = getgenv();
     startTick = tick();
 };
 
 for i,v in next, vars do
     genv[i] = v
 end
+
+genv.varsloaded = true
