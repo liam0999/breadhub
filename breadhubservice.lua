@@ -94,3 +94,6 @@ gamemt.__namecall = newcclosure(function(Self,...)
 end)
 
 setreadonly(gamemt,true)
+
+
+return breadhub
