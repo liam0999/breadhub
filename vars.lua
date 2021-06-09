@@ -1,7 +1,5 @@
 local genv = getgenv()
 
-local scriptName do local _,e = pcall(function() error('') end) scriptName = e:split(":")[1] end
-
 local vars = {
     RunService = game:GetService("RunService");
     ReplicatedStorage = game:GetService("ReplicatedStorage");
@@ -15,7 +13,6 @@ local vars = {
     LocalPlayer = game:GetService("Players").LocalPlayer;
     Camera = workspace.CurrentCamera;
     ogScreenSize = workspace.CurrentCamera.ViewportSize;
-    scriptName = scriptName;
     startTick = tick();
 };
 
