@@ -45,7 +45,7 @@ function breadhub.logpcall(func,...)
     if not s then
         local split = e:split(":")
         local path,line,msg = split[1],split[2],split[3]
-        if path == scriptName then path = "BreadHub" end
+        if path == genv.scriptName then path = "BreadHub" end
         breadhub.console.error(table.concat({"From: "..path,"Line: "..line,"Message: "..msg}," || "))
     end
     return s,e

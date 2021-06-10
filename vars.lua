@@ -1,5 +1,8 @@
 local genv = getgenv()
 
+local scriptName do local _,e = pcall(function() error('') end) scriptName = e:split(":")[1] end
+print(scriptName)
+
 local vars = {
     RunService = game:GetService("RunService");
     ReplicatedStorage = game:GetService("ReplicatedStorage");
