@@ -82,7 +82,7 @@ function breadhub.getGameInfo(id)
     if s then
         data = d
         for i,v in next, loadstring(game:HttpGet("https://raw.githubusercontent.com/liam0999/breadhub/main/games.lua"))() do
-            if i == data.Name then
+            if id == v.id then
                 data["cname"] = i
             end
         end
