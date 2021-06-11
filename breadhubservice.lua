@@ -41,7 +41,8 @@ end
 --------------------------------------------------------------------------------------------------------------------------- << logpcall
 
 function breadhub.logpcall(func,...)
-    local s,e = pcall(func,...)
+    local args = {...}
+    local s,e = pcall(func,unpack(args))
     if not s then
         local split = e:split(":")
         local path,line,msg = split[1],split[2],split[3]
@@ -80,6 +81,11 @@ function breadhub.getGameInfo(id)
     local s,d = breadhub.logpcall(MPS.GetProductInfo,MPS,id)
     if s then
         data = d
+        for i,v in next, loadstring(game:HttpGet("https://raw.githubusercontent.com/liam0999/breadhub/main/games.lua"))() do
+            if i == data.Name then
+                data["cname"] = i
+            end
+        end
     end
     return data
 end
