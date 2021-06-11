@@ -71,6 +71,19 @@ function breadhub.isFriendly(plr,teamcolor)
     end
 end
 
+--------------------------------------------------------------------------------------------------------------------------- << game info
+
+function breadhub.getGameInfo(id)
+    id = id or game.PlaceId
+    local MPS = game:GetService("MarketplaceService")
+    local data = {}
+    local s,d = breadhub.logpcall(MPS.GetProductInfo,MPS,id)
+    if s then
+        data = d
+    end
+    return data
+end
+
 --------------------------------------------------------------------------------------------------------------------------- << call
 
 setmetatable(breadhub,{__index = function(t,i)
